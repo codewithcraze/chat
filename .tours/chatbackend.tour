@@ -1,0 +1,12 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Chat.Backend",
+  "steps": [
+    {
+      "file": "chat.backend/package.json",
+      "description": "Here with this script we set the environment variable for development. Means we can manage what we have to show and hide in the code for development and production.\r\n",
+      "line": 9
+    }
+  ],
+  "ref": "main"
+}
