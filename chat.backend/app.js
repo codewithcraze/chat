@@ -52,7 +52,6 @@ console.log(process.env.NODE_ENV);
 app.use('/api/v1', indexRoutes);
 
 
-
 app.use(async(req, res, next) => {
     next(createHttpError.NotFound('endpoint does not exist!'));
 })

@@ -2,10 +2,30 @@ import cluster from "cluster";
 import os from "os";
 import app from "./app.js";
 import logger from "./configs/logger.js";
+import mongoose from "mongoose";
+
+
 
 const PORT = process.env.PORT || 5000;
 const numCPUs = os.cpus().length;
 
+// mongodb connection error handler.
+mongoose.connection.on("error", (err) => {
+  logger.error(`MongoDB connection error: ${err}`);
+  process.exit(1);
+});
+
+// mongodb debug mode.
+if(process.env.NODE_ENV === "development"){
+  mongoose.set("debug", true);
+}
+
+// mongodb connection mode.
+mongoose.connect(process.env.MONGODB_URI).then(() => {
+  logger.info("Connected to MongoDB");
+})
+
+// Clustering code
 if (cluster.isPrimary) {
   // Master process: fork workers
   logger.info(`Primary process ${process.pid} is running`);
