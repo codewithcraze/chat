@@ -1,6 +1,11 @@
 export const register = async (req, res, next) => {
     try{
-        res.send(req.body);
+        res.json({
+            message: "Register successful",
+            data: {
+                token: "token"
+            }
+        })
     }catch(error){
         next(error)
     }
