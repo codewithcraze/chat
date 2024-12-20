@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -15,7 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     picture: {
         type: String,
-        default: "https://via.placeholder.com/150"
+        default: "https://res.cloudinary.com/dkd5jblv5/image/upload/v1675976806/Default_ProfilePicture_gjngnb.png"
     },
     status: {
         type: String,
@@ -45,6 +46,20 @@ const userSchema = new mongoose.Schema({
 }, {
     collection: "users",
     timestamps: true
+});
+
+
+userSchema.pre("save", async function (next) {
+    try {
+      if (this.isNew) {
+        const salt = await bcrypt.genSalt(12);
+        const hashedPassword = await bcrypt.hash(this.password, salt);
+        this.password = hashedPassword;
+      }
+      next();
+    } catch (error) {
+      next(error);
+    }
 });
 
 const UserModel = mongoose.models.UserModal || mongoose.model("UserModel", userSchema);

@@ -10,7 +10,6 @@ import fileUpload from 'express-fileupload';
 import cors from 'cors';
 import createHttpError from 'http-errors';
 
-
 dotenv.config();
 
 const app = express();
@@ -59,7 +58,7 @@ app.use(async(req, res, next) => {
 app.use(async (err, req, res, next) => {
     res.status(err.status || 500);
     res.send({
-        errro: {
+        error: {
             status: err.status || 500,
             message: err.message
         }
