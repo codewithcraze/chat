@@ -13,7 +13,7 @@ const persistConfig = {
     whitelist: ["user"], // only user will be persisted
     transforms: [saveUserOnlyFilter],
 };
-
+    
 const rootReducer = combineReducers({
     user: userReducer, // Use userSlice.reducer or import as userReducer
 });
