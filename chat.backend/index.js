@@ -5,7 +5,6 @@ import logger from "./configs/logger.js";
 import mongoose from "mongoose";
 
 
-
 const PORT = process.env.PORT || 5000;
 const numCPUs = os.cpus().length;
 

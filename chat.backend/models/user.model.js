@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "Hey there! I am using travelchat"
+        default: "Hey there! I am using travomint chat"
     },
     password: {
         type: String,
@@ -42,12 +42,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "Snva Employee"
     }
-
 }, {
     collection: "users",
     timestamps: true
 });
-
 
 userSchema.pre("save", async function (next) {
     try {

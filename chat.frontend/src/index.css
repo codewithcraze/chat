@@ -4,10 +4,7 @@
 
 
 
-
-
 /* custom classes can be defined in the components layer as shown below:  */
-
 @layer components{
     .customh1{
         @apply text-3xl font-bold text-center;  
