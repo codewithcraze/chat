@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import PropType from "prop-types";
-import CircleLoader from 'react-spinners/CircleLoader';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 const AuthGuard = ({ children }) => {
     const { user } = useSelector(state => state.user);
@@ -18,7 +18,7 @@ const AuthGuard = ({ children }) => {
         return children;
     }
     return <div className="flex justify-center items-center h-screen">
-        <CircleLoader  color="#bf1d2c" size={200} />
+        <SyncLoader  color="#bf1d2c"  />
     </div>;
 };
 
@@ -36,7 +36,7 @@ const GuardAuthEndpoint = ({ children }) => {
         return children;
     }
     return <div className="flex justify-center items-center h-screen">
-        <CircleLoader  color="#bf1d2c" size={200}/>
+        <SyncLoader  color="#bf1d2c" />
     </div>;
 }
 

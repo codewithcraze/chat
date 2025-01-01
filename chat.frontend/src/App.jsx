@@ -10,7 +10,7 @@ const Register = React.lazy(() => import('./pages/register'));
 const NotFound = React.lazy(() => import('./pages/not-found'));
 
 // Loading spinner
-import CircleLoader from 'react-spinners/CircleLoader';
+import SyncLoader from 'react-spinners/SyncLoader';
 
 // Route Guard
 import { AuthGuard, GuardAuthEndpoint } from './hoc/auth.guard';
@@ -29,7 +29,7 @@ function App() {
       <Router>
         <Suspense fallback={
           <div className="flex justify-center items-center h-screen">
-            <CircleLoader color="#bf1d2c" speedMultiplier={2} size={200}/>
+            <SyncLoader color="#bf1d2c" speedMultiplier={2} />
           </div>
         }>
           <Routes>
