@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import PropType from "prop-types";
-import RotateLoader from 'react-spinners/RotateLoader';
+import CircleLoader from 'react-spinners/CircleLoader';
 
 const AuthGuard = ({ children }) => {
     const { user } = useSelector(state => state.user);
@@ -18,10 +18,9 @@ const AuthGuard = ({ children }) => {
         return children;
     }
     return <div className="flex justify-center items-center h-screen">
-        <RotateLoader  color="#bf1d2c" />
+        <CircleLoader  color="#bf1d2c" size={200} />
     </div>;
 };
-
 
 const GuardAuthEndpoint = ({ children }) => {
     const { user } = useSelector(state => state.user);
@@ -37,14 +36,9 @@ const GuardAuthEndpoint = ({ children }) => {
         return children;
     }
     return <div className="flex justify-center items-center h-screen">
-        <RotateLoader  color="#bf1d2c" />
+        <CircleLoader  color="#bf1d2c" size={200}/>
     </div>;
 }
-
-
-
-
-
 
 AuthGuard.propTypes = {
     children: PropType.node.isRequired
@@ -52,6 +46,7 @@ AuthGuard.propTypes = {
 GuardAuthEndpoint.propTypes = {
     children: PropType.node.isRequired
 }
+
 export {
     AuthGuard,
     GuardAuthEndpoint

@@ -4,18 +4,14 @@
     --light: #fff;
 }
 
-body {
-    /* When the body has the .dark class */
-    &.dark {
-        background-color: var(--dark);
-    }
-}
+
 
 /* Switch styling */
 .switch {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 15px;
+    top: 16px;
+    z-index: 9000;
 }
 
 .switch__input {
@@ -34,8 +30,8 @@ body {
 .switch__label {
     display: block;
     position: relative;
-    width: 60px;
-    height: 30px;
+    width: 33px;
+    height: 29px;
     background-color: var(--dark);
     border-radius: 25px;
     transition: 0.4s;

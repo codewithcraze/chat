@@ -1,15 +1,9 @@
-import { logout } from "../app/features/userSlice"
-import { useDispatch } from "react-redux"
+import Header from '../components/header.jsx';
+
 
 export default function Home() {
 
-    const dispatch = useDispatch();
     return <div>
-        Home
-        <button
-            onClick={() => dispatch(logout())}
-        >
-            Logout
-        </button>   
+        <Header />
     </div>
 }

@@ -7,27 +7,35 @@ import ThemeProvider from './hoc/theme.provider';
 const Home = React.lazy(() => import('./pages/home'));
 const Login = React.lazy(() => import('./pages/login'));
 const Register = React.lazy(() => import('./pages/register'));
+const NotFound = React.lazy(() => import('./pages/not-found'));
 
-import RotateLoader from 'react-spinners/RotateLoader';
-
-
+// Loading spinner
+import CircleLoader from 'react-spinners/CircleLoader';
 
 // Route Guard
-import {AuthGuard, GuardAuthEndpoint} from './hoc/auth.guard';
+import { AuthGuard, GuardAuthEndpoint } from './hoc/auth.guard';
 
 function App() {
+
+  const routes = [
+    { path: "/", element: <AuthGuard><Home /></AuthGuard> },
+    { path: "/login", element: <GuardAuthEndpoint><Login /></GuardAuthEndpoint> },
+    { path: "/register", element: <GuardAuthEndpoint><Register /></GuardAuthEndpoint> },
+    { path: "*", element: <NotFound /> }
+  ];
+
   return (
     <ThemeProvider>
       <Router>
-        <Suspense fallback={<div className='flex justify-center items-center h-screen'>
-          <RotateLoader color='#bf1d2c' />
-        </div>}>
+        <Suspense fallback={
+          <div className="flex justify-center items-center h-screen">
+            <CircleLoader color="#bf1d2c" speedMultiplier={2} size={200}/>
+          </div>
+        }>
           <Routes>
-            <Route path="/" element={<AuthGuard><Home /></AuthGuard>} />
-            <Route path="/login" element={<GuardAuthEndpoint><Login /></GuardAuthEndpoint>} />
-            <Route path="/register" element={<GuardAuthEndpoint>
-              <Register />
-            </GuardAuthEndpoint>} />
+            {routes.map(({ path, element }, index) => (
+              <Route key={index} path={path} element={element} />
+            ))}
           </Routes>
         </Suspense>
       </Router>
