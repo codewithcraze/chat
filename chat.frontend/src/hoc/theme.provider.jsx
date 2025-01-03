@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 const ThemeProvider = ({ children }) => {
-    
     const savedTheme = localStorage.getItem('theme') || 'light';
     const [toggle, setToggle] = useState(savedTheme);
     useEffect(() => {
