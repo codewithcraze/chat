@@ -25,22 +25,24 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 })
 
 // Clustering code
-if (cluster.isPrimary) {
-  // Master process: fork workers
-  logger.info(`Primary process ${process.pid} is running`);
-  logger.info(`Forking ${numCPUs} workers...`);
+// if (cluster.isPrimary) {
+//   // Master process: fork workers
+//   logger.info(`Primary process ${process.pid} is running`);
+//   logger.info(`Forking ${numCPUs} workers...`);
 
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+//   for (let i = 0; i < numCPUs; i++) {
+//     cluster.fork();
+//   }
 
-  // Listen for worker exit events
-  cluster.on("exit", (worker, code, signal) => {
-    logger.error(`Worker ${worker.process.pid} exited with code ${code}, signal ${signal}`);
-    logger.info("Starting a new worker...");
-    cluster.fork(); // Automatically restart the worker
-  });
-} else {
+//   // Listen for worker exit events
+//   cluster.on("exit", (worker, code, signal) => {
+//     logger.error(`Worker ${worker.process.pid} exited with code ${code}, signal ${signal}`);
+//     logger.info("Starting a new worker...");
+//     cluster.fork(); // Automatically restart the worker
+//   });
+// } else {
+
+{
   // Worker process: start the server
   let server;
 

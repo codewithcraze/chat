@@ -6,8 +6,6 @@ import { createOpenConversation, getConversations } from '../controllers/convers
 const router = express.Router();
 
 router.route('/').post(trimRequest.all, authMiddleware, createOpenConversation);
-
-
 router.route('/').get(trimRequest.all, authMiddleware, getConversations )
 
 export default router;

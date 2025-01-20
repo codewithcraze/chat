@@ -5,7 +5,6 @@ export default function CommunityIcon({ className }) {
       height={28}
       width={28}
       preserveAspectRatio="xMidYMid meet"
-      fill="none"
     >
       <path
         fillRule="evenodd"
