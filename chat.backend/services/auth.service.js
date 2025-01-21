@@ -6,6 +6,7 @@ import { UserModel } from "../models/index.js";
 //env variables
 const { DEFAULT_PICTURE, DEFAULT_STATUS } = process.env;
 
+
 export const createUser = async (userData) => {
   const { name, email, picture, status, password } = userData;
 
@@ -57,9 +58,7 @@ export const createUser = async (userData) => {
       "Please make sure your password is between 6 and 128 characters."
     );
   }
-
   //hash password--->to be done in the user model
-
   //adding user to databse
   const user = await new UserModel({
     name,

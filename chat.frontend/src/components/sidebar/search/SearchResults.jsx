@@ -1,4 +1,4 @@
-// import Contact from "./Contact";x
+import Contact from "./Contact";
 
 export default function SearchResults({ searchResults, setSearchResults }) {
   return (
@@ -13,15 +13,11 @@ export default function SearchResults({ searchResults, setSearchResults }) {
         <ul>
           {searchResults &&
             searchResults.map((user) => (
-              // <Contact
-
-              //   contact={user}
-              //   key={user._id}
-              //   setSearchResults={setSearchResults}
-              // />
-              <div>
-                Hello World
-              </div>
+              <Contact
+                contact={user}
+                key={user._id}
+                setSearchResults={setSearchResults}
+              />
             ))}
         </ul>
       </div>

@@ -12,7 +12,7 @@ export default function Conversations({ onlineUsers, typing }) {
       <ul>
         {conversations &&
           conversations
-            .filter(
+            .filter(  
               (c) =>
                 c.latestMessage ||
                 c._id === activeConversation._id ||

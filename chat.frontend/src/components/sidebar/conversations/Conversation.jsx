@@ -55,11 +55,11 @@ function Conversation({ convo, socket, online, typing }) {
           {/*Conversation name and message*/}
           <div className="w-full flex flex-col">
             {/*Conversation name*/}
-            <h1 className="font-bold flex items-center gap-x-2">
+            <h6 className="font-bold flex items-center gap-x-2">
               {convo.isGroup
                 ? convo.name
                 : capitalize(getConversationName(user, convo.users))}
-            </h1>
+            </h6>
             {/* Conversation message */}
             <div>
               <div className="flex items-center gap-x-1 dark:text-dark_text_2">

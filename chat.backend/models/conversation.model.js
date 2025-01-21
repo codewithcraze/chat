@@ -23,7 +23,7 @@ const conversationSchema = new mongoose.Schema({
         ref: "MessageModel"
     },
     admin: {
-        type: ObjectId,
+        type: ObjectId, 
         ref: "UserModel"
     }
 
@@ -32,5 +32,7 @@ const conversationSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const ConversationModel = mongoose.models.ConversationModel || mongoose.model("ConversationModel", conversationSchema)
+const ConversationModel = mongoose.models.ConversationModel || mongoose.model("ConversationModel", conversationSchema);
+
+
 export default ConversationModel;

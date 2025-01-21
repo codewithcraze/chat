@@ -1,8 +1,6 @@
 import createHttpError from "http-errors";
-import logger from "../configs/logger.config.js";
+import logger from "../configs/logger.js";
 import { searchUsers as searchUsersService } from "../services/user.service.js";
-
-
 
 
 export const searchUsers = async (req, res, next) => {

@@ -10,21 +10,20 @@ export default function Search({ searchLength, setSearchResults }) {
   const handleSearch = async (e) => {
     if (e.target.value && e.key === "Enter") {
       try {
-        debugger;
         const { data } = await axios.get(
-          `${'http://localhost:5000'}/user?search=${e.target.value}`,
+          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/user?search=${e.target.value}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
-            },
+            }, 
           }
         );
-        // setSearchResults(data);
+        setSearchResults(data);
       } catch (error) {
         console.log(error.response.data.error.message);
       }
     } else {
-      // setSearchResults([]);
+      setSearchResults([]);
     }
   };
   return (
@@ -33,7 +32,7 @@ export default function Search({ searchLength, setSearchResults }) {
       <div className="px-[10px]">
         {/*Search input container*/}
         <div className="flex items-center gap-x-2">
-          <div className="w-full flex dark:bg-dark_bg_2 rounded-lg">
+          <div className="w-full flex dark:bg-dark_bg_2 rounded-lg pl-2">
             {show || searchLength > 0 ? (
               <span
                 className="w-8 flex items-center justify-center rotateAnimation cursor-pointer"
@@ -49,7 +48,7 @@ export default function Search({ searchLength, setSearchResults }) {
             <input
               type="text"
               placeholder="Search or start a new chat"
-              className="input p-3 border"
+              className="input"
               onFocus={() => setShow(true)}
               onBlur={() => searchLength == 0 && setShow(false)}
               onKeyDown={(e) => handleSearch(e)}

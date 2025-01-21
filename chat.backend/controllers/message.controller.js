@@ -40,4 +40,4 @@ export const getMessages = async (req, res, next) => {
     }catch(error){
         next(error);
     }
-}
+}   

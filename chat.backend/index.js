@@ -3,6 +3,8 @@ import os from "os";
 import app from "./app.js";
 import logger from "./configs/logger.js";
 import mongoose from "mongoose";
+import SocketServer from "./SocketServer.js";
+import { Server } from "socket.io";
 
 
 const PORT = process.env.PORT || 5000;
@@ -15,7 +17,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 // mongodb debug mode.
-if(process.env.NODE_ENV === "development"){
+if (process.env.NODE_ENV === "development") {
   mongoose.set("debug", true);
 }
 
@@ -49,6 +51,19 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
   server = app.listen(PORT, () => {
     logger.info(`Worker ${process.pid} started, server running on port ${PORT}`);
   });
+
+
+  const io = new Server(server, {
+    pingTimeout: 60000,
+    cors: {
+      origin: process.env.CLIENT_ENDPOINT,
+    },
+  });
+  io.on("connection", (socket) => {
+    logger.info("socket io connected successfully.");
+    SocketServer(socket, io);
+  });
+
 
   // Graceful shutdown handler
   const exitHandler = (exitCode = 0) => {
