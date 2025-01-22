@@ -65,6 +65,7 @@ export const userSlice = createSlice({
     },
     setCustomerToken: (state, action) => {
       state.user.token = action.payload;
+      state.user._id = action.payload.userId;
     }
   },
   extraReducers(builder) {

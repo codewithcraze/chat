@@ -13,6 +13,9 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import ClientHome from "./pages/customer.chat";
+import NavigateCustomer from './pages/navigate.customer';
+
+
 //socket io
 const socket = io(process.env.REACT_APP_API_ENDPOINT.split("/api/v1")[0]);
 
@@ -43,7 +46,7 @@ function App() {
             <Route
               exact
               path="/register"
-              element={!token ? <Register /> : <Navigate to="/" />}
+              element={!token  ? <Register /> : <Navigate to="/" />}
             />
             <Route 
               exact 
@@ -52,6 +55,14 @@ function App() {
                 <ClientHome socket={socket} />
               }
             />
+            <Route 
+              exact
+              path="/c/:shortId"
+              element={
+                <NavigateCustomer />
+              }
+            />
+
           </Routes>
         </Router>
       </SocketContext.Provider>

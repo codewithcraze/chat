@@ -137,7 +137,6 @@ export const chatSlice = createSlice({
     },
     updateMessagesForClient: (state, action) => {
       state.messages = [...state.messages, action.payload];
-
     },
     addFiles: (state, action) => {
       state.files = [...state.files, action.payload];
@@ -151,6 +150,7 @@ export const chatSlice = createSlice({
       let fileToRemove = [files[index]];
       state.files = files.filter((file) => !fileToRemove.includes(file));
     },
+
   },
   extraReducers(builder) {
     builder

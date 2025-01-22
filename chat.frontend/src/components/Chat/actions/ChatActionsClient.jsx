@@ -7,22 +7,23 @@ import { Attachments } from "./attachments";
 import EmojiPickerApp from "./EmojiPicker";
 import Input from "./Input";
 import SocketContext from "../../../context/SocketContext";
-function ChatActionsClient({ socket }) {
+
+function ChatActionsClient({ socket, token, convo_id }) {
   const dispatch = useDispatch();
   const [showPicker, setShowPicker] = useState(false);
   const [showAttachments, setShowAttachments] = useState(false);
   const [loading, setLoading] = useState(false);
   const { activeConversation, status } = useSelector((state) => state.chat);
-  const { user } = useSelector((state) => state.user);
-  const { token } = user;
   const [message, setMessage] = useState("");
   const textRef = useRef();
+
   const values = {
     message,
-    convo_id: "678e6576869d2b2da587350e",
+    convo_id: convo_id,
     files: [],
     token,
   };
+
   const SendMessageHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -31,14 +32,15 @@ function ChatActionsClient({ socket }) {
     setMessage("");
     setLoading(false);
   };
-  return (
+
+  return (  
     <form
       onSubmit={(e) => SendMessageHandler(e)}
       className="dark:bg-dark_bg_2 h-[60px] w-full flex items-center absolute bottom-0 py-2 px-4 select-none"
     >
       {/*Container*/}
       <div className="w-full flex items-center gap-x-2">
-        {/*Emojis and attachpments*/}
+        {/*Emojis and attachments*/}
         <ul className="flex gap-x-2">
           <EmojiPickerApp
             textRef={textRef}
@@ -74,4 +76,5 @@ const ChatActionsWithSocket = (props) => (
     {(socket) => <ChatActionsClient {...props} socket={socket} />}
   </SocketContext.Consumer>
 );
+
 export default ChatActionsWithSocket;
