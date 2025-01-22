@@ -27,6 +27,7 @@
     "mongoose": "^8.9.1",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.9",
+    "shortid": "^2.2.16",
     "socket.io": "^4.8.1",
     "trim-request": "^1.0.6",
     "validator": "^13.12.0",
