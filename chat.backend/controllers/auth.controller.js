@@ -5,13 +5,14 @@ import { findUser } from "../services/user.service.js";
 
 export const register = async (req, res, next) => {
   try {
-    const { name, email, picture, status, password } = req.body;
+    const { name, email, picture, status, password, phoneNumber } = req.body;
     const newUser = await createUser({
       name,
       email,
       picture,
       status,
       password,
+      phoneNumber
     });
     const access_token = await generateToken(
       { userId: newUser._id },
@@ -37,6 +38,7 @@ export const register = async (req, res, next) => {
         email: newUser.email,
         picture: newUser.picture,
         status: newUser.status,
+        phoneNumber: newUser.phoneNumber,
         token: access_token,
       },
     });

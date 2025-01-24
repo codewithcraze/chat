@@ -93,12 +93,19 @@ export default function RegisterForm() {
             register={register}
             error={errors?.password?.message}
           />
+          <AuthInput
+            name="phoneNumber"
+            type="text"
+            placeholder="Enter phone number"
+            register={register}
+            error={errors?.phoneNumber?.message}
+          />
           {/* Picture */}
-          <Picture
+          {/* <Picture
             readablePicture={readablePicture}
             setReadablePicture={setReadablePicture}
             setPicture={setPicture}
-          />
+          /> */}
           {/*if we have an error*/}
           {error ? (
             <div>

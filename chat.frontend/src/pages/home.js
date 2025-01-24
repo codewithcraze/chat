@@ -146,21 +146,27 @@ function Home({ socket }) {
     myVideo.current.srcObject = stream;
     setShow(true);
   };
+  
   //get Conversations
+
   useEffect(() => {
     if (user?.token) {
       dispatch(getConversations(user.token));
     }
   }, [user]);
+
+
   useEffect(() => {
     //lsitening to receiving a message
     socket.on("receive message", (message) => {
       dispatch(updateMessagesAndConversations(message));
     });
-    //listening when a user is typing
+    // listening when a user is typing
     socket.on("typing", (conversation) => setTyping(conversation));
     socket.on("stop typing", () => setTyping(false));
   }, []);
+
+
   return (
     <>
      {/*Create a new Conversation link */}

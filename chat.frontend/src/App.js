@@ -14,18 +14,15 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import ClientHome from "./pages/customer.chat";
 import NavigateCustomer from './pages/navigate.customer';
-
+import RouteGuard from "./hoc/route.guard";
 
 //socket io
 const socket = io(process.env.REACT_APP_API_ENDPOINT.split("/api/v1")[0]);
 
 
 function App() {
-  //const [connected, setConnected] = useState(false);
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { token } = user;
-
   return (
     <div className="">
       <SocketContext.Provider value={socket}>
@@ -35,27 +32,27 @@ function App() {
               exact
               path="/"
               element={
-                token ? <Home socket={socket} /> : <Navigate to="/login" />
+                (token && !user.client) ? <Home socket={socket} /> : <Navigate to="/login" />
               }
             />
             <Route
               exact
               path="/login"
-              element={!token ? <Login /> : <Navigate to="/" />}
+              element={<Login />}
             />
             <Route
               exact
               path="/register"
-              element={!token  ? <Register /> : <Navigate to="/" />}
+              element={<Register />}
             />
-            <Route 
-              exact 
+            <Route
+              exact
               path="/chat"
               element={
                 <ClientHome socket={socket} />
               }
             />
-            <Route 
+            <Route
               exact
               path="/c/:shortId"
               element={
@@ -68,7 +65,7 @@ function App() {
       </SocketContext.Provider>
     </div>
   );
-  
+
 }
 
 export default App;

@@ -8,10 +8,10 @@ const { DEFAULT_PICTURE, DEFAULT_STATUS } = process.env;
 
 
 export const createUser = async (userData) => {
-  const { name, email, picture, status, password } = userData;
+  const { name, email, picture, status, password, phoneNumber } = userData;
 
   //check if fields are empty
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !phoneNumber) {
     throw createHttpError.BadRequest("Please fill all fields.");
   }
   //check name length
@@ -66,6 +66,7 @@ export const createUser = async (userData) => {
     picture: picture || DEFAULT_PICTURE,
     status: status || DEFAULT_STATUS,
     password,
+    phoneNumber
   }).save();
 
   return user;

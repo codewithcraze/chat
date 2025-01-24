@@ -64,8 +64,9 @@ export const userSlice = createSlice({
       state.status = action.payload;
     },
     setCustomerToken: (state, action) => {
-      state.user.token = action.payload;
+      state.user.token = action.payload.token;
       state.user._id = action.payload.userId;
+      state.user.client = "client"
     }
   },
   extraReducers(builder) {

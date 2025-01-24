@@ -50,11 +50,11 @@ function ChatActionsClient({ socket, token, convo_id }) {
             setShowPicker={setShowPicker}
             setShowAttachments={setShowAttachments}
           />
-          <Attachments
+          {/* <Attachments
             showAttachments={showAttachments}
             setShowAttachments={setShowAttachments}
             setShowPicker={setShowPicker}
-          />
+          /> */}
         </ul>
         {/*Input*/}
         <Input message={message} setMessage={setMessage} textRef={textRef} />

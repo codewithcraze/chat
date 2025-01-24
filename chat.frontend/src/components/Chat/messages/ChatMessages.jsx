@@ -4,7 +4,7 @@ import Message from "./Message";
 import Typing from "./Typing";
 import FileMessage from "./files/FileMessage";
 
-export default function ChatMessages({ typing }) {
+export default function ChatMessages({ typing, convo_id }) {
   const { messages, activeConversation } = useSelector((state) => state.chat);
   const { user } = useSelector((state) => state.user);
   const endRef = useRef();

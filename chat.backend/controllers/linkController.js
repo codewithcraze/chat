@@ -10,12 +10,13 @@ import { saveShortURL , findShortURL} from "../services/short.service.js";
 
 export const createLink = async (req, res, next) => {
     try {
-        const { groupName, userName, email } = req.body;
+        const { groupName, userName, email, phoneNumber } = req.body;
         const password = "Deepak@123";
         const newUser = await createUser({
             name: userName,
             email,
             password,
+            phoneNumber
         });
         const access_token = await generateToken(
             { userId: newUser._id },
@@ -86,7 +87,7 @@ export const navigateToLink  = async (req, res, next) => {
 }
 
 async function shortTheURL({access_token, refresh_token, groupName, conversationId, userId}){
-    const url = `https://localhost:3000/chat?token=${access_token}&roomId=${conversationId}&userId=${userId}`;
+    const url = `http://65.0.40.155:3011/chat?token=${access_token}&roomId=${conversationId}&userId=${userId}`;
     const urlCode = shortid.generate();
     const shortURL = await saveShortURL(url, urlCode);
     return shortURL;
