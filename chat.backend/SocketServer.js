@@ -7,9 +7,11 @@ export default function (socket, io) {
     if (!onlineUsers.some((u) => u.userId === user)) {
       onlineUsers.push({ userId: user, socketId: socket.id });
     }
-    // send online users to frontend
+
+    // Send online users to frontend
+    console.log(onlineUsers)
     io.emit("get-online-users", onlineUsers);
-    // send socket id
+    // Send socket id
     io.emit("setup socket", socket.id);
   });
 
@@ -27,6 +29,7 @@ export default function (socket, io) {
   //send and receive message
   socket.on("send message", (message) => {
     let conversation = message.conversation;
+    if (!conversation) return;
     if (!conversation.users) return;
     conversation.users.forEach((user) => {
       if (user._id === message.sender._id) return;
@@ -36,10 +39,9 @@ export default function (socket, io) {
 
   //typing
   socket.on("typing", (conversation) => {
-    console.log(conversation);
-
     socket.in(conversation).emit("typing", conversation);
   });
+
   socket.on("stop typing", (conversation) => {
     socket.in(conversation).emit("stop typing");
   });
